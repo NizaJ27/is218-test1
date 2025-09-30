@@ -3,15 +3,15 @@
 ## Scenario
 You’ve joined **TinyTools, Inc.** Deliver a production-ready **Python Calculator** library with four operations:
 
-- **add**, **subtract**, **multiply**, **divide**  
+- **add**, **subtract**, **multiply**, **divide**
 - **Divide by zero must raise `ZeroDivisionError`.**
 
-Your team enforces professional workflow:  
-- **Brand-new repo**  
-- **Atomic commits** with required prefixes  
-- Pass **linting**  
-- All **tests** must pass  
-- **100% test coverage** required  
+Your team enforces professional workflow:
+- **Brand-new repo**
+- **Atomic commits** with required prefixes
+- Pass **linting**
+- All **tests** must pass
+- **100% test coverage** required
 
 ---
 
@@ -28,14 +28,14 @@ tests/
 ---
 
 ## Commit Rules
-- Every commit message **must** start with one of:  
-  - `chore:` — setup/config/docs  
-  - `feature:` — new functionality **and its tests**  
-  - `fix:` — bug fix or correcting a test  
+- Every commit message **must** start with one of:
+  - `chore:` — setup/config/docs
+  - `feature:` — new functionality **and its tests**
+  - `fix:` — bug fix or correcting a test
 
 - **Atomic history**:
-  - Each calculator function (**add, subtract, multiply, divide**) must be delivered in **its own commit**, with the tests **and** the implementation together.  
-  - Do **not** put multiple functions in one commit.  
+  - Each calculator function (**add, subtract, multiply, divide**) must be delivered in **its own commit**, with the tests **and** the implementation together.
+  - Do **not** put multiple functions in one commit.
   - Do **not** split one function across multiple commits.
 
 - **Minimum 8 commits** required (more is fine; do not squash).
@@ -98,3 +98,21 @@ If any step fails, you lose points for that category.
 
 * Push to GitHub/GitLab and share the repo URL **OR** upload a zip including `.git` history.
 * Your **last commit** must be before the 30-minute deadline.
+
+## How to run locally
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# Lint
+pylint --errors-only src
+
+# Tests (with pylint plugin)
+PYTHONPATH=src pytest tests -v
+PYTHONPATH=src pytest --pylint src -v
+
+# Coverage
+PYTHONPATH=src coverage run -m pytest tests
+coverage report --fail-under=100
